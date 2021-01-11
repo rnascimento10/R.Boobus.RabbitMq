@@ -13,7 +13,7 @@ install:
 - dotnet restore ./src/R.BooBus.sln
 script:
 # Compilando em modo release e associando o numero da versao 
-- dotnet build /p:Version=1.0.2 --configuration Release ./src/R.BooBus.sln
+- dotnet build /p:Version=1.0.0 --configuration Release ./src/R.BooBus.sln
 
 # Executando os testes automatizados
 - dotnet test ./src/R.BooBus.Tests/R.BooBus.Tests.csproj
