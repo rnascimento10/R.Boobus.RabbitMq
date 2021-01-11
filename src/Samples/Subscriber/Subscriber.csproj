@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-Subscriber-A6BBB5A4-B6A7-4B12-AA5F-05A1D19A7596</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\R.BooBus.RabbitMQ\R.BooBus.RabbitMQ.csproj" />
+    <ProjectReference Include="..\..\R.BooBus\R.BooBus.Core.csproj" />
+  </ItemGroup>
+</Project>
