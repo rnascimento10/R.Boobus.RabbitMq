@@ -1,8 +1,4 @@
-﻿using R.BooBus.AzureServiceBus;
-using R.BooBus.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using R.BooBus.Core;
 
 namespace Subscriber
 {

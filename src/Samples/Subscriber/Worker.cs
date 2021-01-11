@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Hosting;
-using R.BooBus.AzureServiceBus;
 using R.BooBus.RabbitMQ;
 using Subscriber.Handlers;
 using System.Threading;
@@ -9,11 +8,11 @@ namespace Subscriber
 {
     public class Worker : BackgroundService
     {
-        private IRabbitMQEventBus _azureServiceBus;
+        private IRabbitMQEventBus _bus;
 
-        public Worker(IRabbitMQEventBus azureServiceBus)
+        public Worker(IRabbitMQEventBus bus)
         {
-            _azureServiceBus = azureServiceBus;
+            _bus = bus;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -24,13 +23,13 @@ namespace Subscriber
         public override Task StartAsync(CancellationToken cancellationToken)
         {
 
-            _azureServiceBus.Subscribe<PublishVideoEvent, PublishedVideoEventHandler>();
+            _bus.Subscribe<PublishVideoEvent, PublishedVideoEventHandler>();
             return base.StartAsync(cancellationToken);
         }
 
         public override Task StopAsync(CancellationToken cancellationToken)
         {
-            _azureServiceBus.Unsubscribe<PublishVideoEvent, PublishedVideoEventHandler>();
+            _bus.Unsubscribe<PublishVideoEvent, PublishedVideoEventHandler>();
             return base.StopAsync(cancellationToken);
         }
     }

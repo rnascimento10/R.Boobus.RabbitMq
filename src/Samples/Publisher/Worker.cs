@@ -10,12 +10,12 @@ namespace Publisher
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
-        private readonly IRabbitMQEventBus _azureServiceBus;
+        private readonly IRabbitMQEventBus _bus;
 
-        public Worker(ILogger<Worker> logger, IRabbitMQEventBus azureServiceBus)
+        public Worker(ILogger<Worker> logger, IRabbitMQEventBus bus)
         {
             _logger = logger;
-            _azureServiceBus = azureServiceBus;
+            _bus = bus;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -25,7 +25,7 @@ namespace Publisher
                
                 var message = new PublishVideoEvent();
                 message.Message = "This is a more one content, of net core arquitecture series.";
-                _azureServiceBus.Publish(message);
+                _bus.Publish(message);
 
                 _logger.LogInformation("message send {message} at: {time}", message.Message, DateTimeOffset.Now);
 
